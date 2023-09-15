@@ -3,8 +3,8 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <main>
-        <asp:FileUpload runat="server" />
-        <asp:Button runat="server" ID="btnUpload" OnClick="btnUpload_Click"/>
+        <asp:FileUpload runat="server" ID="fuFiles" />
+        <asp:Button runat="server" ID="btnUpload" OnClick="btnUpload_Click" Text="Upload"/>
     </main>
 
 </asp:Content>
