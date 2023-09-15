@@ -19,21 +19,37 @@ namespace CLDVClassGroupActivity
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
-            string connString = "DefaultEndpointsProtocol=https;AccountName=10085210video;AccountKey=TZ21WDXIj4gpErTyClb5Xw9hfsbJMgivoOCMBEJ74ChtWCIMcaTivi+rr8lODsOuJGo082Dzc0d1+AStiYm0Lg==;EndpointSuffix=core.windows.net";
             
-            string Vpath = @"C:\Users\Jarryd\Videos";
-            string Ppath = @"C:\Users\Jarryd\Pictures";
-            string container;
+            string[] videofiles = { ".mp4", ".avi", ".mkv", ".mov", ".wmv", ".flv" };
+            string[] imagefiles = { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff" };
 
+            string connString = "DefaultEndpointsProtocol=https;AccountName=10085210video;AccountKey=TZ21WDXIj4gpErTyClb5Xw9hfsbJMgivoOCMBEJ74ChtWCIMcaTivi+rr8lODsOuJGo082Dzc0d1+AStiYm0Lg==;EndpointSuffix=core.windows.net";
+            string fileName = fuFiles.FileName;
+
+            string container = "groupphotos";
             string Path;
+
+            for (int i = 0; i < 6; i++)
+            {
+                if (fileName.EndsWith(videofiles[i].ToString())) 
+                {
+                    container = "groupvideos";
+                }else if (fileName.EndsWith(imagefiles[i].ToString()))
+                {
+                    container = "groupphotos";
+                }else { container = "groupfiles"; }
+            }
             
-            container = "groupvideos";
+
+            
             BlobContainerClient containerClient = new BlobContainerClient(connString, container);
-            var blobClient = containerClient.GetBlobClient(fuFiles.FileName);
+            var blobClient = containerClient.GetBlobClient(fileName);
             using (var filestream = fuFiles.FileContent)
             {
                 blobClient.Upload(filestream);
             }
+
+            lblStatus.Text = "File uploaded";
         }
     }
 }
