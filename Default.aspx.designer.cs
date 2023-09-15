@@ -15,6 +15,15 @@ namespace CLDVClassGroupActivity
     {
 
         /// <summary>
+        /// fuFiles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuFiles;
+
+        /// <summary>
         /// btnUpload control.
         /// </summary>
         /// <remarks>
@@ -22,5 +31,14 @@ namespace CLDVClassGroupActivity
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpload;
+
+        /// <summary>
+        /// lblStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatus;
     }
 }
