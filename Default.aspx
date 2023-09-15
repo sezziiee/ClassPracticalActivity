@@ -38,7 +38,8 @@
                     <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
                 </p>
             </section>
-        </div>
+
+            <asp:FileUpload runat="server" />
     </main>
 
 </asp:Content>
