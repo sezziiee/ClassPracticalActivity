@@ -9,6 +9,7 @@
             </td>
         </tr>
         <tr>
+
             <td style="height: 34px; text-align: center; width: 732px;">Enter username: </td>
             <td style="height: 34px">
                 <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
@@ -24,6 +25,12 @@
             <td style="height: 34px; text-align: center; width: 732px;">&nbsp;</td>
             <td style="height: 34px">
                 <asp:Button ID="btnLogin" runat="server" Text="Login" />
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 34px; text-align: center; width: 732px;">&nbsp;</td>
+            <td style="height: 34px">
+                <asp:Label ID="lblWarning" runat="server" Text=""></asp:Label>
             </td>
         </tr>
     </table>
