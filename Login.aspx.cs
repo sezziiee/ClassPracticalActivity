@@ -10,7 +10,7 @@ namespace CLDVClassGroupActivity
     public partial class Login : System.Web.UI.Page
     {
 
-        List<Register> reg = new List<Register> ();
+       static List<Register> reg = new List<Register> ();
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,7 +33,11 @@ namespace CLDVClassGroupActivity
             {
                 if (re.username == txtUsername.Text && re.password == txtPassword.Text)
                 {
-                    Response.Redirect("Home");
+                    Response.Redirect("Default");
+                }
+                else
+                {
+                    lblWarning.Text = "Login details was incorrect";
                 }
             }
         }
