@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -8,14 +9,35 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 
 namespace CLDVClassGroupActivity
 {
     public partial class _Default : Page
     {
+        BlobContainerClient containerClient;
+        const string connString = "DefaultEndpointsProtocol=https;AccountName=10085210video;AccountKey=TZ21WDXIj4gpErTyClb5Xw9hfsbJMgivoOCMBEJ74ChtWCIMcaTivi+rr8lODsOuJGo082Dzc0d1+AStiYm0Lg==;EndpointSuffix=core.windows.net";
+        string container;
+        string[] blobnames = {"groupvideos", "groupfiles", "groupphotos" };
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            ArrayList blobs = new ArrayList();
+            
+            for (int i = 0; i<3; i++)
+            {
+                container = blobnames[i];
+                containerClient = new BlobContainerClient(connString, container);
 
+                foreach (BlobItem blobItem in containerClient.GetBlobs())
+                {
+                    blobs.Add(blobItem);
+                }
+            }
+            
+
+            dtgUploaded.DataSource = blobs;
+            dtgUploaded.DataBind();
         }
 
         protected void btnUpload_Click(object sender, EventArgs e)
@@ -24,7 +46,7 @@ namespace CLDVClassGroupActivity
             string[] videofiles = { "mp4", "avi", "mkv", "mov", "wmv", "flv" };
             string[] imagefiles = { "jpg", "jpeg", "png", "gif", "bmp", "tiff" };
 
-            string connString = "DefaultEndpointsProtocol=https;AccountName=10085210video;AccountKey=TZ21WDXIj4gpErTyClb5Xw9hfsbJMgivoOCMBEJ74ChtWCIMcaTivi+rr8lODsOuJGo082Dzc0d1+AStiYm0Lg==;EndpointSuffix=core.windows.net";
+            
             string fileName = fuFiles.FileName;
 
             string container;
@@ -43,7 +65,7 @@ namespace CLDVClassGroupActivity
             }
             else { container = "groupfiles"; }
 
-            BlobContainerClient containerClient = new BlobContainerClient(connString, container);
+            containerClient = new BlobContainerClient(connString, container);
             var blobClient = containerClient.GetBlobClient(fileName);
             using (var filestream = fuFiles.FileContent)
             {
