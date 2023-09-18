@@ -7,6 +7,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Azure.Storage.Blobs;
+using Azure.Storage.Queues;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
 
 namespace CLDVClassGroupActivity
 {
@@ -48,8 +51,50 @@ namespace CLDVClassGroupActivity
             {
                 blobClient.Upload(filestream);
             }
+            GetMessages();
 
             lblStatus.Text = "File uploaded";
+        }
+        public string Message()
+        {
+
+            return "File uploaded successfully on " + DateTime.Now;
+        }
+        string connString = "DefaultEndpointsProtocol=https;AccountName=10085210video;AccountKey=TZ21WDXIj4gpErTyClb5Xw9hfsbJMgivoOCMBEJ74ChtWCIMcaTivi+rr8lODsOuJGo082Dzc0d1+AStiYm0Lg==;EndpointSuffix=core.windows.net";
+        public void StorageAccount()
+        {
+
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connString);
+
+            var queueClient = storageAccount.CreateCloudQueueClient();
+            var queue = queueClient.GetQueueReference("classpractical");
+            queue.CreateIfNotExists();
+
+            CloudQueueMessage message = new CloudQueueMessage("message_content");
+            queue.AddMessage(message);
+        }
+
+        public void GetMessages()
+        {
+            CloudStorageAccount store = CloudStorageAccount.Parse(connString);
+            var queue = store.CreateCloudQueueClient();
+            var queueName = queue.GetQueueReference("classpractical");
+            CloudQueueMessage messToGet = queueName.GetMessage();
+            messToGet.SetMessageContent(Message());
+            queueName.UpdateMessage(messToGet, TimeSpan.FromSeconds(0.0), MessageUpdateFields.Content | MessageUpdateFields.Visibility);
+
+        }
+        public void SendMessage()
+        {
+            CloudStorageAccount store = CloudStorageAccount.Parse(connString);
+
+            var queue = store.CreateCloudQueueClient();
+            var queueName = queue.GetQueueReference("classpractical");
+            queueName.CreateIfNotExists();
+
+            CloudQueueMessage que = new CloudQueueMessage(Message());
+            queueName.AddMessage(que);
+
         }
     }
 }
