@@ -20,17 +20,11 @@ namespace CLDVClassGroupActivity
 
 
         protected void btnReg_Click(object sender, EventArgs e)
-        {
-           
-                
+        {                      
                     Register register = new Register();
                     register.username = txtUsername.Text;
                     register.password = txtPassword.Text;
-                    reg.Add(register);
-                
-                    //lblWarning.Text = "Username and password already excists!";
-                
-            
+                    reg.Add(register);   
             
         }
 
