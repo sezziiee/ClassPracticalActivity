@@ -14,13 +14,13 @@
         
                 <asp:Label runat="server" ID="Passwords" Text="Password:" />
                 <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
-
+               
             
             <div class="butonstyle">
-                <asp:Button ID="btnReg" class="btnlogin" runat="server" Text="Register" />
-                <asp:Button ID="btnLogin" class="btnlogin" runat="server" Text="Login" />
+                <asp:Button ID="btnReg" class="btlogin" OnClick="btnReg_Click" runat="server" Text="Register" />
+                <asp:Button ID="btnLogin" class="btlogin" OnClick="btnLogin_Click" runat="server" Text="Login" />
             </div>
-            
+             <asp:Label ID="lblWarning" runat="server" />
         </div>
         </div>
 

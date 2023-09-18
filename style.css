@@ -1,5 +1,10 @@
-﻿body {
-    background-color: white;
+﻿*{
+    padding:0;
+    margin: 0;
+}
+body {
+    background-color: aliceblue;
+    background-repeat: no-repeat;
 }
 .container{
     justify-content: space-between;
@@ -27,7 +32,7 @@
 .User{
     color: white;
 }
-.btnlogin {
+.btlogin {
     margin-top: 5%;
     margin-right: 20px;
     margin-left: -10px;
@@ -45,4 +50,20 @@
 .btnlogin:hover {
     background-color: white;
     color: pink;
+}
+.heading{
+    text-align: center;
+    color: black;
+}
+.dtg{
+    margin: 2%;
+    padding: 5%;
+    color: white;
+}
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: left;
 }
