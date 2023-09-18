@@ -1,0 +1,43 @@
+﻿body {
+    background-color: white;
+}
+.container{
+    justify-content: space-between;
+}
+.loginbox {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#logincontain {
+    width: 34%;
+    background-color: pink;
+    border-radius: 30px;
+    margin: 5%;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid violet;
+}
+.login{
+    color:white;
+}
+.User{
+    color: white;
+}
+.btnlogin{
+    margin-top: 5%;
+    padding: 10px;
+    width: 150px;
+    border-radius: 30px;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+    font-weight: 900;
+}
+.btnlogin:hover{
+    background-color: white;
+    color: pink;
+}
