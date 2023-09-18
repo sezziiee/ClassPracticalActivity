@@ -24,7 +24,9 @@
         <tr>
             <td style="height: 34px; text-align: center; width: 732px;">&nbsp;</td>
             <td style="height: 34px">
-                <asp:Button ID="btnLogin" runat="server" Text="Login" />
+                &nbsp;<asp:Button ID="btnReg" runat="server" OnClick="btnReg_Click" Text="Register" />
+&nbsp;
+                <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
             </td>
         </tr>
         <tr>
