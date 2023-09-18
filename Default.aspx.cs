@@ -74,7 +74,7 @@ namespace CLDVClassGroupActivity
             {
                 blobClient.Upload(filestream);
             }
-            GetMessages();
+            SendMessage();
 
             lblStatus.Text = "File uploaded";
 
