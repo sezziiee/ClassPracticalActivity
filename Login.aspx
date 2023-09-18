@@ -16,9 +16,10 @@
                 <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
 
             
-            
+            <div class="butonstyle">
+                <asp:Button ID="btnReg" class="btnlogin" runat="server" Text="Register" />
                 <asp:Button ID="btnLogin" class="btnlogin" runat="server" Text="Login" />
-
+            </div>
             
         </div>
         </div>
