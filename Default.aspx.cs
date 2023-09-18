@@ -54,46 +54,38 @@ namespace CLDVClassGroupActivity
             GetMessages();
 
             lblStatus.Text = "File uploaded";
+
+           // SendMessage();
         }
         public string Message()
         {
-
             return "File uploaded successfully on " + DateTime.Now;
         }
-        string connString = "DefaultEndpointsProtocol=https;AccountName=10085210video;AccountKey=TZ21WDXIj4gpErTyClb5Xw9hfsbJMgivoOCMBEJ74ChtWCIMcaTivi+rr8lODsOuJGo082Dzc0d1+AStiYm0Lg==;EndpointSuffix=core.windows.net";
-        public void StorageAccount()
+        //string connString = "DefaultEndpointsProtocol=https;AccountName=10085210video;AccountKey=TZ21WDXIj4gpErTyClb5Xw9hfsbJMgivoOCMBEJ74ChtWCIMcaTivi+rr8lODsOuJGo082Dzc0d1+AStiYm0Lg==;EndpointSuffix=core.windows.net";
+        public void SendMessage()
         {
-
+            string connString = "DefaultEndpointsProtocol=https;AccountName=10085210video;AccountKey=TZ21WDXIj4gpErTyClb5Xw9hfsbJMgivoOCMBEJ74ChtWCIMcaTivi+rr8lODsOuJGo082Dzc0d1+AStiYm0Lg==;EndpointSuffix=core.windows.net";
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connString);
 
             var queueClient = storageAccount.CreateCloudQueueClient();
             var queue = queueClient.GetQueueReference("classpractical");
             queue.CreateIfNotExists();
 
-            CloudQueueMessage message = new CloudQueueMessage("message_content");
+            CloudQueueMessage message = new CloudQueueMessage(Message());
             queue.AddMessage(message);
         }
-
         public void GetMessages()
         {
-            CloudStorageAccount store = CloudStorageAccount.Parse(connString);
-            var queue = store.CreateCloudQueueClient();
-            var queueName = queue.GetQueueReference("classpractical");
-            CloudQueueMessage messToGet = queueName.GetMessage();
-            messToGet.SetMessageContent(Message());
-            queueName.UpdateMessage(messToGet, TimeSpan.FromSeconds(0.0), MessageUpdateFields.Content | MessageUpdateFields.Visibility);
+           string connString = "DefaultEndpointsProtocol=https;AccountName=10085210video;AccountKey=TZ21WDXIj4gpErTyClb5Xw9hfsbJMgivoOCMBEJ74ChtWCIMcaTivi+rr8lODsOuJGo082Dzc0d1+AStiYm0Lg==;EndpointSuffix=core.windows.net";
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connString);
 
-        }
-        public void SendMessage()
-        {
-            CloudStorageAccount store = CloudStorageAccount.Parse(connString);
+            var queueClient = storageAccount.CreateCloudQueueClient();
+            var queue = queueClient.GetQueueReference("classpractical");
 
-            var queue = store.CreateCloudQueueClient();
-            var queueName = queue.GetQueueReference("classpractical");
-            queueName.CreateIfNotExists();
-
-            CloudQueueMessage que = new CloudQueueMessage(Message());
-            queueName.AddMessage(que);
+            CloudQueueMessage messageToGet = queue.GetMessage();
+            
+            messageToGet.SetMessageContent(Message());
+            queue.UpdateMessage(messageToGet, TimeSpan.FromSeconds(0.0), MessageUpdateFields.Content | MessageUpdateFields.Visibility);
 
         }
     }
