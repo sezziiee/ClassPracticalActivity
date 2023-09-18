@@ -58,7 +58,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - All Rights Reserved @ Jarryds Bitches Inc.</p>
+                <p>&copy; <%: DateTime.Now.Year %> - All Rights Reserved @ Jarryd Inc.</p>
             </footer>
         </div>
     </form>
