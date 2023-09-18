@@ -52,11 +52,11 @@ namespace CLDVClassGroupActivity
             {
                 blobClient.Upload(filestream);
             }
-            GetMessages();
+            
 
             lblStatus.Text = "File uploaded";
-
-           // SendMessage();
+            SendMessage();
+            
         }
         public string Message()
         {
@@ -77,7 +77,7 @@ namespace CLDVClassGroupActivity
         }
         public void GetMessages()
         {
-           string connString = "DefaultEndpointsProtocol=https;AccountName=10085210video;AccountKey=TZ21WDXIj4gpErTyClb5Xw9hfsbJMgivoOCMBEJ74ChtWCIMcaTivi+rr8lODsOuJGo082Dzc0d1+AStiYm0Lg==;EndpointSuffix=core.windows.net";
+            string connString = "DefaultEndpointsProtocol=https;AccountName=10085210video;AccountKey=TZ21WDXIj4gpErTyClb5Xw9hfsbJMgivoOCMBEJ74ChtWCIMcaTivi+rr8lODsOuJGo082Dzc0d1+AStiYm0Lg==;EndpointSuffix=core.windows.net";
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connString);
 
             var queueClient = storageAccount.CreateCloudQueueClient();
